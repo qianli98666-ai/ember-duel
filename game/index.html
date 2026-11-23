@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ember Duel — a card duel of fire and guard</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="table">
+
+  <!-- Title screen -->
+  <section id="title-screen" class="screen">
+    <div class="title-inner">
+      <div class="title-glyph">&#9650;</div>
+      <h1 class="game-name">EMBER DUEL</h1>
+      <p class="tagline">A turn-based card duel of champions, guards and spells.</p>
+      <div class="rules-box">
+        <h2>How to play</h2>
+        <ul>
+          <li>You and the foe start with <b>30 life</b>. First to fall loses.</li>
+          <li>Each turn your <b>ember</b> refills and grows by 1 (up to 8). Spend ember to play cards.</li>
+          <li><b>Champions</b> stay on your side and strike the foe when you end your turn.</li>
+          <li><b>Guards</b> raise a shield that soaks up the foe's strike before it reaches your life.</li>
+          <li><b>Spells</b> burn, mend or draw cards at once.</li>
+          <li>Click a card (or press <b>1-7</b>) to play it. Press <b>Enter</b> to end your turn.</li>
+        </ul>
+      </div>
+      <button id="start-button" class="big-button">Start the duel</button>
+      <p class="hint">Mouse and keyboard &middot; no network &middot; runs from these files alone</p>
+    </div>
+  </section>
+
+  <!-- Battle screen -->
+  <section id="battle-screen" class="screen hidden">
+    <div id="foe-zone" class="zone foe">
+      <div class="duelist-bar">
+        <span class="duelist-name foe-name">The Ashen Foe</span>
+        <span class="stat life" id="foe-life">Life 24</span>
+        <span class="stat shield" id="foe-shield">Shield 0</span>
+        <span class="stat ember" id="foe-ember">Ember 3</span>
+        <span class="stat deck" id="foe-deck">Deck 25</span>
+      </div>
+      <div id="foe-hand" class="hand-row backs"></div>
+      <div id="foe-board" class="board-row"></div>
+    </div>
+
+    <div id="clash-zone">
+      <div id="turn-banner">Your turn</div>
+      <div id="clash-log"></div>
+    </div>
+
+    <div id="player-zone" class="zone player">
+      <div id="player-board" class="board-row"></div>
+      <div id="player-hand" class="hand-row"></div>
+      <div class="duelist-bar">
+        <span class="duelist-name player-name">You</span>
+        <span class="stat life" id="player-life">Life 24</span>
+        <span class="stat shield" id="player-shield">Shield 0</span>
+        <span class="stat ember" id="player-ember">Ember 3/3</span>
+        <span class="stat deck" id="player-deck">Deck 25</span>
+        <button id="end-turn-button" class="big-button small">End turn (Enter)</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- End screen -->
+  <section id="end-screen" class="screen hidden">
+    <div class="title-inner">
+      <div class="title-glyph" id="end-glyph">&#9733;</div>
+      <h1 class="game-name" id="end-title">VICTORY</h1>
+      <p class="tagline" id="end-line">The foe's ember gutters out.</p>
+      <div class="rules-box stats-box">
+        <div class="stat-line"><span>Turns played</span><b id="stat-turns">0</b></div>
+        <div class="stat-line"><span>Damage you dealt</span><b id="stat-damage">0</b></div>
+        <div class="stat-line"><span>Your life left</span><b id="stat-life">0</b></div>
+        <div class="stat-line"><span>Foe life left</span><b id="stat-foe-life">0</b></div>
+      </div>
+      <button id="again-button" class="big-button">Play again (R)</button>
+    </div>
+  </section>
+
+</div>
+<script src="js/cards.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/ai.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

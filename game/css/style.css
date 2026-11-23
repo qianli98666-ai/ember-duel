@@ -1,0 +1,281 @@
+/* Ember Duel — table styling. Dark felt, ember orange for the player,
+   cold blue for the foe, big readable card faces. */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #0b0f16;
+  color: #f3ead9;
+  font-family: Georgia, "Times New Roman", serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#table {
+  width: 1240px;
+  max-width: 98vw;
+  min-height: 740px;
+  background:
+    radial-gradient(ellipse at 50% 38%, #233048 0%, #16202f 55%, #0e1622 100%);
+  border: 3px solid #3a2c1c;
+  border-radius: 18px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65), inset 0 0 120px rgba(0, 0, 0, 0.55);
+  padding: 12px 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.screen { width: 100%; }
+.hidden { display: none !important; }
+
+/* ---------- title and end screens ---------- */
+
+.title-inner {
+  text-align: center;
+  padding: 34px 20px 26px;
+}
+
+.title-glyph {
+  font-size: 54px;
+  color: #ff9a3c;
+  text-shadow: 0 0 26px rgba(255, 140, 40, 0.75);
+  line-height: 1;
+}
+
+.game-name {
+  font-size: 68px;
+  letter-spacing: 6px;
+  margin: 10px 0 4px;
+  color: #ffd9a0;
+  text-shadow: 0 3px 0 #7a3c10, 0 0 34px rgba(255, 140, 40, 0.45);
+}
+
+.tagline { font-size: 19px; color: #cfd8e6; font-style: italic; }
+
+.rules-box {
+  margin: 22px auto 24px;
+  max-width: 640px;
+  text-align: left;
+  background: rgba(8, 12, 20, 0.72);
+  border: 1px solid #46536b;
+  border-radius: 12px;
+  padding: 16px 22px;
+}
+
+.rules-box h2 {
+  font-size: 20px;
+  letter-spacing: 2px;
+  color: #ffb35c;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.rules-box ul { list-style: none; }
+.rules-box li { font-size: 16.5px; line-height: 1.5; padding: 3px 0; color: #e8e2d2; }
+.rules-box b { color: #ffd9a0; }
+
+.stats-box { max-width: 440px; }
+.stat-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  padding: 5px 0;
+  border-bottom: 1px dashed rgba(160, 175, 200, 0.25);
+}
+.stat-line:last-child { border-bottom: none; }
+.stat-line b { color: #ffd9a0; font-size: 20px; }
+
+.big-button {
+  font-family: inherit;
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #241203;
+  background: linear-gradient(180deg, #ffc46b, #ff8f2e);
+  border: 2px solid #7a3c10;
+  border-radius: 12px;
+  padding: 13px 34px;
+  cursor: pointer;
+  box-shadow: 0 6px 0 #7a3c10, 0 12px 24px rgba(0, 0, 0, 0.5);
+}
+.big-button:hover { filter: brightness(1.08); }
+.big-button:active { transform: translateY(3px); box-shadow: 0 3px 0 #7a3c10; }
+.big-button.small { font-size: 16px; padding: 8px 18px; border-radius: 9px; }
+.big-button:disabled { filter: grayscale(0.7) brightness(0.7); cursor: default; }
+
+.hint { margin-top: 14px; font-size: 13.5px; color: #8fa0b8; }
+
+/* ---------- battle layout ---------- */
+
+.zone { padding: 4px 0; }
+
+.duelist-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 4px 2px;
+  flex-wrap: wrap;
+}
+
+.duelist-name { font-size: 20px; font-weight: bold; letter-spacing: 1px; }
+.foe-name { color: #9fd0ff; }
+.player-name { color: #ffb35c; }
+
+.stat {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 3px 12px;
+  border-radius: 20px;
+  background: rgba(8, 12, 20, 0.75);
+  border: 1px solid #46536b;
+}
+.stat.life { color: #ff8f8f; border-color: #7a3434; }
+.stat.shield { color: #a8e6ff; border-color: #33607a; }
+.stat.ember { color: #ffc46b; border-color: #7a5a24; }
+.stat.deck { color: #cfd8e6; }
+
+#end-turn-button { margin-left: auto; }
+
+.hand-row, .board-row {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: flex-end;
+  min-height: 140px;
+  padding: 5px 0;
+}
+
+.board-row { min-height: 122px; align-items: flex-start; }
+.hand-row.backs { min-height: 80px; align-items: center; }
+
+#clash-zone {
+  margin: 6px auto;
+  max-width: 860px;
+  text-align: center;
+  background: rgba(8, 12, 20, 0.66);
+  border: 1px solid #39465e;
+  border-radius: 12px;
+  padding: 6px 18px 8px;
+  min-height: 78px;
+}
+
+#turn-banner {
+  font-size: 21px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: #ffd9a0;
+  text-transform: uppercase;
+}
+
+#clash-log { font-size: 15.5px; color: #d9e2ef; line-height: 1.45; margin-top: 3px; }
+#clash-log .hit { color: #ffb35c; font-weight: bold; }
+#clash-log .blocked { color: #a8e6ff; font-weight: bold; }
+
+/* ---------- cards ---------- */
+
+.card {
+  width: 118px;
+  height: 156px;
+  border-radius: 10px;
+  border: 2px solid #0a0d13;
+  padding: 7px 8px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  color: #1c1408;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.55);
+  user-select: none;
+  flex: 0 0 auto;
+}
+
+.card.champion { background: linear-gradient(165deg, #ffd9a0, #ff9a3c 70%, #e06a12); }
+.card.guard { background: linear-gradient(165deg, #d6f0ff, #7cc0e8 70%, #3f83b5); }
+.card.spell { background: linear-gradient(165deg, #f3e6ff, #c79bff 70%, #8a5fd0); }
+
+.card .cost {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  background: #241203;
+  color: #ffc46b;
+  font-size: 17px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ffc46b;
+}
+
+.card .glyph {
+  font-size: 33px;
+  text-align: center;
+  margin-top: 8px;
+  line-height: 1;
+  color: rgba(28, 16, 4, 0.82);
+}
+
+.card .card-name {
+  font-size: 13.5px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1.15;
+  min-height: 25px;
+  margin-top: 3px;
+}
+
+.card .card-text {
+  font-size: 11.5px;
+  text-align: center;
+  line-height: 1.25;
+  color: #33240f;
+  flex: 1;
+}
+
+.card .big-number {
+  font-size: 26px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1;
+}
+.card .big-label {
+  font-size: 10.5px;
+  text-align: center;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #4a3418;
+}
+
+.card.playable { cursor: pointer; outline: 3px solid #ffe9b0; outline-offset: 1px; }
+.card.playable:hover { transform: translateY(-10px); }
+.card.unplayable { filter: grayscale(0.55) brightness(0.72); }
+.card.on-board { width: 104px; height: 136px; cursor: default; }
+.card.on-board .glyph { font-size: 27px; margin-top: 6px; }
+.card.on-board .big-number { font-size: 23px; }
+
+.card-back {
+  width: 56px;
+  height: 76px;
+  border-radius: 8px;
+  background:
+    repeating-linear-gradient(45deg, #24344d 0 8px, #1a283e 8px 16px);
+  border: 2px solid #5b7aa6;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9fd0ff;
+  font-size: 22px;
+  flex: 0 0 auto;
+}
+
+.empty-note {
+  font-size: 15px;
+  color: #8fa0b8;
+  font-style: italic;
+  align-self: center;
+}
